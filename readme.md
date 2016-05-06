@@ -52,6 +52,8 @@ Create an ```.env``` file on the root of your project with the token.
 echo "BOT_TOKEN=paste_your_bot_token_here" > .env
 ```
 
+#### Start Your Servers
+
 Start your MongoDB server in a separate terminal window.
 ```
 mongod
@@ -69,7 +71,7 @@ A majority of your testing should occur through Direct Messages with @spambot. I
 
 ## Development
 
-Modify the ```src/server.js``` file to suit your needs.
+Add your functionality as a new script within ```src/controllers/``` and require it into ```src/server.js```. If you need to make any adjustments to the main server file, or add to ```src/models/``` go for it! Just be aware you are at a higher risk of merge conflicts.
 
 ### How to Release
 
