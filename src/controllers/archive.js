@@ -44,7 +44,7 @@ module.exports = function(controller) {
 
 				// Wrapping a channel id or user id string with it's corrosponding symbol and <>'s
 				// tell slack to parse the acual user / channel object
-				var combinedMsg = '> Replaying <#' + docs[0].channel + '>\'s last ' + docs.length + ' messages.\n\n';
+				var combinedMsg = '> <#' + docs[0].channel + '>\'s last ' + docs.length + ' messages. (newest first)\n\n';
 
 				// Loop all recalled messages
 				for (var docIndex in docs) {

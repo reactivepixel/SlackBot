@@ -7,7 +7,7 @@ module.exports = function() {
 			channel: String,
 			user: String,
 			text: String,
-			ts: String,
+			ts: Number,
 			team: String,
 			event: String,
 			created_at: {
@@ -89,7 +89,7 @@ module.exports = function() {
 					success(doc);
 				}
 			}).sort({
-				'created_at': 1
+				'created_at': -1
 			}).limit(payload.limit);
 		};
 	// FIND
