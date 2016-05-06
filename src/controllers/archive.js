@@ -31,7 +31,7 @@ module.exports = function(controller) {
 		var heard = message.match[0].split(' ');
 
 		// Set the limit = the number the user entered or if none was entered default to 10
-		var limit = Number(heard[1]) || 10;
+		var limit = Number(heard[1]) || 11;
 
 		// Recall from the Model
 		Msg.recall({
