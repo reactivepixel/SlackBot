@@ -40,7 +40,7 @@ npm install
 Additional Global Installs to make your life easier.
 
 ```
-npm i -g nodemon mocha
+npm i -g nodemon
 ```
 #### Get the Bot's Token
 
