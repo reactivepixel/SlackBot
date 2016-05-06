@@ -4,9 +4,9 @@ var mongoose = require("mongoose");
 var uristring = process.env.MONGOLAB_URI || 'mongodb://localhost/slackbot';
 
 mongoose.connect(uristring, function(err, res) {
-    if (err) {
-        console.log(uristring + ' - ' + err, "MongoDB Connection", false);
-    } else {
-        console.log(uristring, "MongoDB Connection", true);
-    }
+	if (err) {
+		console.log(uristring + ' - ' + err, "MongoDB Connection", false);
+	} else {
+		console.log(uristring, "MongoDB Connection", true);
+	}
 });

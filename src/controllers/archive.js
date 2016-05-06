@@ -1,38 +1,64 @@
 module.exports = function(controller) {
-  var Msg = require('../models/msg.js');
 
-  // Every to any incoming message
-  controller.on(['ambient', 'direct_message', 'direct_mention', 'mention'], function(bot, message) {
+	// Msg model for database interactions
+	var Msg = require('../models/msg.js');
 
-    // Hand the message obj to the Msg modle to add it to the database.
-    Msg.add(message, function() {
-      console.log('Msg Archived.');
-    }, function(err) {
-      console.log('err' + err);
-    });
-  });
+	// Every to any incoming message
+	controller.on(['ambient', 'direct_message', 'direct_mention', 'mention'], function(bot, message) {
 
-  controller.hears('recall', ['direct_message', 'direct_mention'], function(bot, message) {
-    bot.reply(message, 'Recalling previous messages from this channel. Check your DMs :mailbox_with_mail:');
-    // Recall from the Model
-    Msg.recall({
-      channel: message.channel,
-      limit: 10
-    }, function(docs) {
+		// Hand the message obj to the Msg model for it to be added to the database.
+		// Define Success and Failure Handling
+		Msg.add(message, function() {
 
-      // Initiate a DM conversation with the author of the heard message
-      bot.startPrivateConversation(message, function(err, dm) {
-        var combinedMsg = '> <#' + docs[0].channel + '>\'s last ' + docs.length + ' messages.\n\n';
-        for (var i = 0; i < docs.length; i++) {
+			// Note to the log a msg has been saved.
+			// Todo: only show this when debugging
+			console.log('Msg Archived.');
+		}, function(err) {
 
-          var doc = docs[i];
-          // CombinedMsg += doc.ts + '<#' + doc.channel +'> <@' + doc.user + '>: '+ doc.text + '\n';
-          combinedMsg += '<@' + doc.user + '>: ' + doc.text + '\n';
-        }
-        dm.say(combinedMsg);
-      });
-    }, function(err) {
-      console.log('err' + err);
-    });
-  });
+			// Note to the log a msg has errored.
+			// Todo: only show this when debugging
+			console.log('err' + err);
+		});
+	});
+
+	// Listen for command 'recall' to be addressed to the bot
+	controller.hears(['recall .*[0-9]', 'recall'], ['direct_message', 'direct_mention'], function(bot, message) {
+
+		// Post in heard channel that the reply will be private
+		bot.reply(message, 'Recalling previous messages from this channel. Check your DMs :mailbox_with_mail:');
+
+		// Split the matched heard message to use the number they added
+		var heard = message.match[0].split(' ');
+
+		// Set the limit = the number the user entered or if none was entered default to 10
+		var limit = Number(heard[1]) || 10;
+
+		// Recall from the Model
+		Msg.recall({
+			channel: message.channel,
+			limit: limit
+		}, function(docs) {
+
+			// Initiate a DM conversation with the author of the heard message
+			bot.startPrivateConversation(message, function(err, dm) {
+
+				// Wrapping a channel id or user id string with it's corrosponding symbol and <>'s
+				// tell slack to parse the acual user / channel object
+				var combinedMsg = '> Replaying <#' + docs[0].channel + '>\'s last ' + docs.length + ' messages.\n\n';
+
+				// Loop all recalled messages
+				for (var docIndex in docs) {
+					var doc = docs[docIndex];
+
+					// Add onto the initial message so as not to spam the user with multiple DMs
+					combinedMsg += '<@' + doc.user + '>: ' + doc.text + '\n';
+				}
+
+				// Send the DM
+				dm.say(combinedMsg);
+			});
+		}, function(err) {
+			console.log('err' + err);
+		});
+	});
 }

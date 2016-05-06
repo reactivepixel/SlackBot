@@ -76,7 +76,7 @@ Modify the ```src/server.js``` file to suit your needs.
 Developers will be testing on @spambot. As your feature is completed and ready to promote to staging make a pull request to this repo, once merged in it will automatically deploy to @phishbot. At the end of the Hack Night we will revise the final code and push to production and your scripts will live on in infamy under @hal.
 
 | Bot | Environment|
-|---|---|
+|:---|:---|
 | @hal | Production |
 | @phishbot | Staging |
 | @spambot | Development |
