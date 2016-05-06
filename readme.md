@@ -14,7 +14,7 @@ With _Brew_ already installed you can run the following commands to install Mong
 
 ```
 brew install mongodb
-sudo mkdir /data/db
+sudo mkdir -p /data/db
 sudo chown -R $(whoami): /data
 ```
 
@@ -87,6 +87,7 @@ Developers will be testing on @spambot. As your feature is completed and ready t
 
 ### Resources
 
+* [Video Walkthrough on Setting up your Environment](https://youtu.be/7KRkOCCpBCo)
 * [Botkit](https://howdy.ai/botkit/)
 * [WDD Slack](https://wdd.slack.com)
 * [Slack Real Time Messaging API (RTM)](https://api.slack.com/rtm)
