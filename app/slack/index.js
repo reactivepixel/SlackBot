@@ -12,6 +12,7 @@ function connect(){
 	console.log('** Attempting to connect bot to slack...');
 	slack.startRTM(function(err,bot,payload) {	//	Instantiate bot
 		if (err) {
+			console.log(err);
 			throw new Error('** Could not connect to slack');
 			setTimeout(connect(), 5000);
 		} else {

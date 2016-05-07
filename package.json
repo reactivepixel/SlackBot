@@ -26,6 +26,7 @@
   "dependencies": {
     "async": "^2.0.0-rc.4",
     "botkit": "0.0.15",
-    "mongoose": "^4.4.15"
+    "mongoose": "^4.4.15",
+    "request": "^2.72.0"
   }
 }
