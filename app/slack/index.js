@@ -50,7 +50,7 @@ function connect(){
 			}
 
 			//	Make the bot say hello when he joins
-			bot.say({text: 'Online! <@' + bot.identity.id + '> running on ' + os.hostname()  + '!', channel: bot.rooms.programming});
+			bot.say({text: 'Online! <@' + bot.identity.id + '> running on ' + os.hostname()  + '!', channel: bot.rooms.slack_hack_night});
 
 		}
 	});
