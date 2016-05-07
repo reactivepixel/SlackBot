@@ -1,0 +1,10 @@
+{
+  "name": "spambot",
+  "scripts": {
+  },
+  "env": {
+    "REALTIME_SLACK_TOKEN": {
+      "required": true
+    }
+  }
+}

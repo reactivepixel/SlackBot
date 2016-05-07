@@ -1,18 +1,31 @@
 {
   "name": "hal",
-  "version": "1.0.0",
-  "description": "",
-  "main": "src/server.js",
-  "scripts": {
-    "start": "node src/server.js",
-    "test": "mocha"
+  "version": "0.0.1",
+  "description": "Botkit assistant for Slack",
+  "homepage": "https://github.com/reactivepixel/SlackBot",
+  "main": "app/app.js",
+  "author": "Studnicky",
+  "license": "MIT",
+  "engines": {
+    "node": "5.1.0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "start": "node app/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:reactivepixel/SlackBot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/reactivepixel/SlackBot/issues"
+  },
+  "devDependencies": {
+    "dotenv": "^2.0.0"
+  },
   "dependencies": {
-    "botkit": "^0.1.1",
-    "dotenv": "^2.0.0",
-    "mongoose": "^4.4.14"
+    "async": "^2.0.0-rc.4",
+    "botkit": "0.0.15",
+    "mongoose": "^4.4.15"
   }
 }
