@@ -12,6 +12,7 @@ function connect(){
 	console.log('** Attempting to connect bot to slack...');
 	slack.startRTM(function(err,bot,payload) {	//	Instantiate bot
 		if (err) {
+			console.log(err);
 			throw new Error('** Could not connect to slack');
 			setTimeout(connect(), 5000);
 		} else {
@@ -50,7 +51,7 @@ function connect(){
 			}
 
 			//	Make the bot say hello when he joins
-			bot.say({text: 'Online! <@' + bot.identity.id + '> running on ' + os.hostname()  + '!', channel: bot.rooms.programming});
+			bot.say({text: 'Online! <@' + bot.identity.id + '> running on ' + os.hostname()  + '!', channel: bot.rooms.slack_hack_night});
 
 		}
 	});

@@ -49,7 +49,13 @@ Obtain @spambot's Bot Token from the #slack_hack_night channel on [wdd.slack.com
 Create an ```.env``` file on the root of your project with the token.
 
 ```
-echo "BOT_TOKEN=paste_your_bot_token_here" > .env
+# Heroku data
+PORT={port to run on}
+KEEPALIVE_ENDPOINT={Heroku instance or localhost}
+
+# API tokens
+REALTIME_SLACK_TOKEN={realtime slack token}
+MEETUP_API_KEY={meetup API token}
 ```
 
 #### Start Your Servers
@@ -62,7 +68,7 @@ mongod
 Start the bot.
 
 ```
-nodemon src/server.js
+nodemon app/app.js
 ```
 
 ## Interacting / Testing the Bot
