@@ -1,5 +1,5 @@
 module.exports = function() {
-	var db = require('../config/db');
+	var db = require('./db.js');
 	var mongoose = require('mongoose');
 
 	var msgSchema = mongoose.Schema({
